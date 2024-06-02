@@ -1,0 +1,53 @@
+闻歌视觉标签体系服务的API接口
+输入待测试的内容(图像文件或者图像URL)
+
+---
+tags:
+  - 闻歌视觉标签服务 API
+parameters:
+  # - name: url
+  #   in: formData
+  #   type: string
+  #   required: false
+  #   description: 输入待测试的图像URL
+  # - name: id
+  #   in: formData
+  #   type: string
+  #   required: false
+  #   description: 输入待测试图像的任务有效ID
+  - name: image
+    in: formData
+    type: file
+    required: false
+    description: 上传图像文件
+
+responses:
+  500:
+    description: 接收参数信息存在异常!
+  501:
+    description: 接收数据正常,内部处理分析出现异常!
+  200:
+    description: 视觉分析数据的相应标签结果
+    schema:
+      id: results
+      properties:
+        code:
+          type: int
+          description: 返回当前处理任务的状态编码
+          default:
+        msg:
+          type: string
+          description: success则为空, failed则返回出现异常的问题
+          default:
+        id:
+          type: string
+          description: 执行当前任务的ID编号
+          default:
+        time:
+          type: float
+          description: 执行当前任务的耗时情况
+          default:
+        data:
+          type: dict
+          description: 该任务的处理分析结果详情
+          default:
